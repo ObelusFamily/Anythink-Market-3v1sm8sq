@@ -87,7 +87,8 @@ router.get("/", auth.optional, function(req, res, next) {
         var items = results[0];
         var itemsCount = results[1];
         var user = results[2];
-        items.forEach(item => {
+        items.forEach(item => 
+        {
           if(item.image == "")
           {
             item.image = "/placeholder.png"
