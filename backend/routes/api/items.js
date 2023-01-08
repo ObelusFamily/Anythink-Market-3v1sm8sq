@@ -145,7 +145,10 @@ router.post("/", auth.required, function(req, res, next) {
       }
 
       var item = new Item(req.body.item);
-
+      if(item.image == "")
+      {
+        item.image = "https://api.lorem.space/image/watch?w=300&h=300"
+      }
       item.seller = user;
 
       return item.save().then(function() {
