@@ -14,6 +14,10 @@ router.param("item", function(req, res, next, slug) {
       if (!item) {
         return res.sendStatus(404);
       }
+      if(item.image == "")
+      {
+        item.image = "https://placehold.jp/300x300.png"
+      }
 
       req.item = item;
 
@@ -83,6 +87,12 @@ router.get("/", auth.optional, function(req, res, next) {
         var items = results[0];
         var itemsCount = results[1];
         var user = results[2];
+        items.forEach(item => {
+          if(item.image == "")
+          {
+            item.image = "https://placehold.jp/300x300.png"
+          }
+        });
         return res.json({
           items: await Promise.all(
             items.map(async function(item) {
@@ -145,10 +155,6 @@ router.post("/", auth.required, function(req, res, next) {
       }
 
       var item = new Item(req.body.item);
-      if(item.image == "")
-      {
-        item.image = "https://api.lorem.space/image/watch?w=300&h=300"
-      }
       item.seller = user;
 
       return item.save().then(function() {
