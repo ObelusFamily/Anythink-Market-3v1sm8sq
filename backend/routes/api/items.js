@@ -16,6 +16,7 @@ router.param("item", function(req, res, next, slug) {
       }
       if(item.image == "")
       {
+        
         item.image = "https://placehold.jp/150x150.png"
       }
 
