@@ -92,7 +92,7 @@ router.get("/", auth.optional, function(req, res, next) {
         {
           if(item.image == "")
           {
-            item.image = "/placeholder.png"
+            item.image = "/placeholder.png" //replacing the image value
           }
         });
         return res.json({
