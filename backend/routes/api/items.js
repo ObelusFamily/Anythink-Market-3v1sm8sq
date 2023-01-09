@@ -17,7 +17,7 @@ router.param("item", function(req, res, next, slug) {
       if(item.image == "")
       {
         
-        item.image = "https://placehold.jp/150x150.png"
+        item.image = "/placeholder.png"
       }
 
       req.item = item;
@@ -92,7 +92,7 @@ router.get("/", auth.optional, function(req, res, next) {
         {
           if(item.image == "")
           {
-            item.image = "https://placehold.jp/150x150.png"
+            item.image = "/placeholder.png"
           }
         });
         return res.json({
